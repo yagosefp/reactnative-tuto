@@ -9,8 +9,13 @@ const Counter = () => {
     setCount(count + 1);
   };
 
+  const onDecrementCount = () => {
+    setCount(count - 1);
+  };
+
   return (
     <View>
+      <Button title="Decrement Count" onPress={onDecrementCount} disabled={count <= 0} />
       <Text>Current value: {count}</Text>
       <Button title="Increment Count" onPress={onIncrementCount} />
     </View>
