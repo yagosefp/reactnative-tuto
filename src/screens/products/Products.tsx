@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import styles from './product-styles';
@@ -8,6 +8,7 @@ import ProductsService from '../../services/ProductsService';
 
 const Products = () => {
   const navigation = useNavigation<any>();
+  const [products, setProducts] = useState([]);
 
   const onPressButton = () => {
     navigation.navigate('product-details');
@@ -16,11 +17,13 @@ const Products = () => {
   useEffect(() => {
     const getAsyncProducts = async () => {
       const result = await ProductsService.getProducts();
-      console.log(result.data);
+      setProducts(result.data);
     };
 
     getAsyncProducts();
   }, []);
+
+  console.log(products);
 
   return (
     <SafeAreaView style={styles.container}>
