@@ -9,7 +9,7 @@ const ProductItem = ({ product }) => {
   const navigation = useNavigation<any>();
 
   const onPressCard = () => {
-    navigation.navigate('product-details');
+    navigation.navigate('product-details', { item: product });
   };
 
   return (
