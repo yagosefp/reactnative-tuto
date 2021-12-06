@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native';
-import { Button, Text } from 'react-native-elements';
+import { Button, LinearProgress, Text } from 'react-native-elements';
 import styles from './product-styles';
 import Counter from '../../components/counter/Counter';
 import ProductsService from '../../services/ProductsService';
@@ -23,13 +23,14 @@ const Products = () => {
     getAsyncProducts();
   }, []);
 
-  console.log(products);
+  if (products.length === 0) {
+    return <LinearProgress />;
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <Text h4>Soy la página de productos</Text>
       <Counter />
-
       <Button onPress={onPressButton} title="Ir a la página de detalles" />
     </SafeAreaView>
   );
