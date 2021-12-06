@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView } from 'react-native';
-import { Button, LinearProgress, Text } from 'react-native-elements';
+import { SafeAreaView, View } from 'react-native';
+import { LinearProgress, Text } from 'react-native-elements';
 import styles from './product-styles';
 import Counter from '../../components/counter/Counter';
 import ProductsService from '../../services/ProductsService';
+import ProductItem from '../../components/product-item/ProductItem';
 
 const Products = () => {
   const navigation = useNavigation<any>();
@@ -31,7 +32,8 @@ const Products = () => {
     <SafeAreaView style={styles.container}>
       <Text h4>Soy la página de productos</Text>
       <Counter />
-      <Button onPress={onPressButton} title="Ir a la página de detalles" />
+      <ProductItem product={products[0]} />
+      {/* <Button onPress={onPressButton} title="Ir a la página de detalles" /> */}
     </SafeAreaView>
   );
 };
