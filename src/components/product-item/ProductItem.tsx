@@ -1,12 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import { Image } from 'react-native-elements/dist/image/Image';
 import styles from './product-item-styles';
+import { useNavigation } from '@react-navigation/core';
 
 const ProductItem = ({ product }) => {
+  const navigation = useNavigation<any>();
+
+  const onPressCard = () => {
+    navigation.navigate('product-details');
+  };
+
   return (
-    <View style={styles.card}>
+    <TouchableOpacity onPress={onPressCard} style={styles.card}>
       <View style={styles.topContainer}>
         <Image
           style={styles.cardImage}
@@ -26,7 +33,7 @@ const ProductItem = ({ product }) => {
       <View style={styles.actionContainer}>
         <Button title="Añadir al carrito" />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
