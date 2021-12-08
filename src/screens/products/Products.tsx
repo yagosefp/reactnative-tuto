@@ -5,7 +5,7 @@ import styles from './product-styles';
 import ProductsService from '../../services/ProductsService';
 import ProductItem from '../../components/product-item/ProductItem';
 
-const Products = () => {
+const Products = ({ onAddItemToCart }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Products = () => {
         data={products}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
-          return <ProductItem product={item} />;
+          return <ProductItem product={item} onAddItemToCart={onAddItemToCart} />;
         }}
       />
     </SafeAreaView>

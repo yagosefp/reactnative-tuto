@@ -6,11 +6,15 @@ import styles from './product-item-styles';
 import { useNavigation } from '@react-navigation/core';
 import Counter from '../counter/Counter';
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, onAddItemToCart }) => {
   const navigation = useNavigation<any>();
 
   const onPressCard = () => {
     navigation.navigate('product-details', { item: product });
+  };
+
+  const onPressAddButton = () => {
+    onAddItemToCart(product);
   };
 
   return (
@@ -37,7 +41,7 @@ const ProductItem = ({ product }) => {
         <Counter />
       </View>
       <View>
-        <Button title="Añadir al carrito" />
+        <Button onPress={onPressAddButton} title="Añadir al carrito" />
       </View>
     </View>
   );
