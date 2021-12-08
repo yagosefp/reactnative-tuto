@@ -7,6 +7,7 @@ import ProductDetails from '../screens/product-details/ProductDetails';
 import Icons from 'react-native-vector-icons/EvilIcons';
 import { ThemeProvider } from 'react-native-elements';
 import theme from './theme';
+import CartScreen from '../screens/cart/CartScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,16 @@ const TabScreen = ({ cart, onAddItemToCart }) => {
       >
         {(props) => <Products {...props} onAddItemToCart={onAddItemToCart} />}
       </Tab.Screen>
-      {/* Aquí podríamos incluir más tabs a nuestra app */}
+      <Tab.Screen
+        options={{
+          tabBarIcon: (props) => (
+            <Icons name="cart" color={props.focused ? theme.colors.primary : theme.colors.secondary} size={40} />
+          )
+        }}
+        name="Carrito"
+      >
+        {(props) => <CartScreen {...props} cart={cart} onAddItemToCart={onAddItemToCart} />}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };

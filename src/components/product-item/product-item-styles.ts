@@ -60,6 +60,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20
+  },
+  numItemsText: {
+    color: theme.colors.primary,
+    fontWeight: '700',
+    marginBottom: 16
+  },
+  removeButtonContainer: {
+    backgroundColor: theme.colors.error
   }
 });
 

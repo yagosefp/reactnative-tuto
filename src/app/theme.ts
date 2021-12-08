@@ -3,7 +3,8 @@ const theme = {
     primary: '#ffa726',
     secondary: '#8d6e63',
     white: '#ffffff',
-    black: '#000000'
+    black: '#000000',
+    error: '#FF0000'
   }
 };
 
