@@ -11,13 +11,14 @@ import CartScreen from '../screens/cart/CartScreen';
 
 const Tab = createBottomTabNavigator();
 
-const TabScreen = ({ cart, onAddItemToCart }) => {
+const TabScreen = ({ cart, onAddItemToCart, onRemoveItemFromCart }) => {
   return (
     <Tab.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: theme.colors.primary
-        }
+        },
+        headerTintColor: theme.colors.black
       }}
     >
       <Tab.Screen
@@ -38,7 +39,14 @@ const TabScreen = ({ cart, onAddItemToCart }) => {
         }}
         name="Carrito"
       >
-        {(props) => <CartScreen {...props} cart={cart} onAddItemToCart={onAddItemToCart} />}
+        {(props) => (
+          <CartScreen
+            {...props}
+            cart={cart}
+            onAddItemToCart={onAddItemToCart}
+            onRemoveItemFromCart={onRemoveItemFromCart}
+          />
+        )}
       </Tab.Screen>
     </Tab.Navigator>
   );
@@ -65,6 +73,12 @@ const App = () => {
     }
   };
 
+  const removeItemFromCart = (item) => {
+    const filteredCart = cart.filter((cartItem) => cartItem.name !== item.name);
+
+    setCart(filteredCart);
+  };
+
   console.log('my carrito', cart);
 
   return (
@@ -74,11 +88,19 @@ const App = () => {
           screenOptions={{
             headerStyle: {
               backgroundColor: theme.colors.primary
-            }
+            },
+            headerTintColor: theme.colors.black
           }}
         >
           <Stack.Screen options={{ headerShown: false }} name="MainTab">
-            {(props) => <TabScreen {...props} cart={cart} onAddItemToCart={addItemToCart} />}
+            {(props) => (
+              <TabScreen
+                {...props}
+                cart={cart}
+                onAddItemToCart={addItemToCart}
+                onRemoveItemFromCart={removeItemFromCart}
+              />
+            )}
           </Stack.Screen>
           <Stack.Screen name="product-details" component={ProductDetails} />
         </Stack.Navigator>

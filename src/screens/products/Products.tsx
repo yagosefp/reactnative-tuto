@@ -27,7 +27,14 @@ const Products = ({ onAddItemToCart }) => {
         data={products}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
-          return <ProductItem product={item} onAddItemToCart={onAddItemToCart} isItemAddedToCart={false} />;
+          return (
+            <ProductItem
+              product={item}
+              onAddItemToCart={onAddItemToCart}
+              isItemAddedToCart={false}
+              onRemoveItemFromCart={undefined}
+            />
+          );
         }}
       />
     </SafeAreaView>

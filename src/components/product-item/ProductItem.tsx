@@ -6,7 +6,7 @@ import styles from './product-item-styles';
 import { useNavigation } from '@react-navigation/core';
 import Counter from '../counter/Counter';
 
-const ProductItem = ({ product, onAddItemToCart, isItemAddedToCart }) => {
+const ProductItem = ({ product, onAddItemToCart, isItemAddedToCart, onRemoveItemFromCart }) => {
   const navigation = useNavigation<any>();
   const [numItems, setNumItems] = useState(1);
 
@@ -16,6 +16,10 @@ const ProductItem = ({ product, onAddItemToCart, isItemAddedToCart }) => {
 
   const onPressAddButton = () => {
     onAddItemToCart(product, numItems);
+  };
+
+  const onPressRemoveItem = () => {
+    onRemoveItemFromCart(product);
   };
 
   return (
@@ -49,7 +53,7 @@ const ProductItem = ({ product, onAddItemToCart, isItemAddedToCart }) => {
       </View>
       <View>
         {isItemAddedToCart ? (
-          <Button buttonStyle={styles.removeButtonContainer} title="Eliminar del carrito" />
+          <Button onPress={onPressRemoveItem} buttonStyle={styles.removeButtonContainer} title="Eliminar del carrito" />
         ) : (
           <Button onPress={onPressAddButton} title="Añadir al carrito" />
         )}
