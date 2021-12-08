@@ -40,7 +40,19 @@ const App = () => {
   const [cart, setCart] = useState<any>([]);
 
   const addItemToCart = (item) => {
-    setCart([...cart, item]);
+    const itemFoundInCart = cart.find((cartItem) => {
+      return cartItem.name === item.name;
+    });
+
+    if (itemFoundInCart) {
+      // El item ya está dentro del carrito. Filtramos nuestro carrito para que tenga todos los elementos menos el que hemos encontrado.
+      const filteredCart = cart.filter((cartItem) => cartItem.name !== itemFoundInCart.name);
+
+      setCart([...filteredCart, { ...item, units: itemFoundInCart.units + 1 }]);
+    } else {
+      // El item aún no ha sido añadido, lo anadimos y ponemos su valor de units a 1
+      setCart([...cart, { ...item, units: 1 }]);
+    }
   };
 
   console.log('my carrito', cart);
