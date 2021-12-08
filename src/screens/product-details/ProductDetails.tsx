@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView, ScrollView, View } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Image } from 'react-native-elements/dist/image/Image';
 import styles from './product-details-styles';
+import { useNavigation } from '@react-navigation/core';
 
 const ProductDetails = ({ route }) => {
+  const navigation = useNavigation();
   const product = route.params.item;
 
+  useEffect(() => {
+    navigation.setOptions({ headerTitle: product.name });
+  }, []);
 
   return (
     <SafeAreaView>
