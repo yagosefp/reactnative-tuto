@@ -55,7 +55,10 @@ const styles = StyleSheet.create({
     height: 250,
     aspectRatio: 1
   },
-  actionContainer: {
+  counterContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 20
   }
 });

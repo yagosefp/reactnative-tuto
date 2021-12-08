@@ -24,7 +24,7 @@ const Counter = () => {
         onPress={onDecrementCount}
         disabled={count <= 0}
       />
-      <Text>Current value: {count}</Text>
+      <Text>{count}</Text>
       <Button
         containerStyle={styles.buttonContainer}
         buttonStyle={styles.buttonStyle}

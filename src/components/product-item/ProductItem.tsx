@@ -4,6 +4,7 @@ import { Button, Text } from 'react-native-elements';
 import { Image } from 'react-native-elements/dist/image/Image';
 import styles from './product-item-styles';
 import { useNavigation } from '@react-navigation/core';
+import Counter from '../counter/Counter';
 
 const ProductItem = ({ product }) => {
   const navigation = useNavigation<any>();
@@ -13,27 +14,32 @@ const ProductItem = ({ product }) => {
   };
 
   return (
-    <TouchableOpacity onPress={onPressCard} style={styles.card}>
-      <View style={styles.topContainer}>
-        <Image
-          style={styles.cardImage}
-          source={{
-            uri: product.image
-          }}
-        />
-        <View style={styles.brandContainer}>
-          <Text style={styles.brandText}>{product.brand}</Text>
+    <View style={styles.card}>
+      <TouchableOpacity onPress={onPressCard}>
+        <View style={styles.topContainer}>
+          <Image
+            style={styles.cardImage}
+            source={{
+              uri: product.image
+            }}
+          />
+          <View style={styles.brandContainer}>
+            <Text style={styles.brandText}>{product.brand}</Text>
+          </View>
         </View>
-      </View>
 
-      <View style={styles.middleContainer}>
-        <Text style={styles.nameText}>{product.name}</Text>
-        <Text style={styles.priceText}>{`${product.unitPrice}€`}</Text>
+        <View style={styles.middleContainer}>
+          <Text style={styles.nameText}>{product.name}</Text>
+          <Text style={styles.priceText}>{`${product.unitPrice}€`}</Text>
+        </View>
+      </TouchableOpacity>
+      <View style={styles.counterContainer}>
+        <Counter />
       </View>
-      <View style={styles.actionContainer}>
+      <View>
         <Button title="Añadir al carrito" />
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
