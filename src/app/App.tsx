@@ -27,7 +27,7 @@ const TabScreen = ({ cart, onAddItemToCart }) => {
         }}
         name="Productos"
       >
-        {(props) => <Products {...props} cart={cart} onAddItemToCart={onAddItemToCart} />}
+        {(props) => <Products {...props} onAddItemToCart={onAddItemToCart} />}
       </Tab.Screen>
       {/* Aquí podríamos incluir más tabs a nuestra app */}
     </Tab.Navigator>
@@ -39,7 +39,7 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   const [cart, setCart] = useState<any>([]);
 
-  const addItemToCart = (item) => {
+  const addItemToCart = (item, numItemsToAdd) => {
     const itemFoundInCart = cart.find((cartItem) => {
       return cartItem.name === item.name;
     });
@@ -48,10 +48,10 @@ const App = () => {
       // El item ya está dentro del carrito. Filtramos nuestro carrito para que tenga todos los elementos menos el que hemos encontrado.
       const filteredCart = cart.filter((cartItem) => cartItem.name !== itemFoundInCart.name);
 
-      setCart([...filteredCart, { ...item, units: itemFoundInCart.units + 1 }]);
+      setCart([...filteredCart, { ...item, units: itemFoundInCart.units + numItemsToAdd }]);
     } else {
-      // El item aún no ha sido añadido, lo anadimos y ponemos su valor de units a 1
-      setCart([...cart, { ...item, units: 1 }]);
+      // El item aún no ha sido añadido, lo anadimos y ponemos su valor de units a numItemsToAdd
+      setCart([...cart, { ...item, units: numItemsToAdd }]);
     }
   };
 

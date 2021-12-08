@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Text } from 'react-native-elements';
 import { View } from 'react-native';
 import styles from './counter-styles';
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
-
+const Counter = ({ value, onChangeValue }) => {
   const onIncrementCount = () => {
-    setCount(count + 1);
+    onChangeValue(value + 1);
   };
 
   const onDecrementCount = () => {
-    setCount(count - 1);
+    onChangeValue(value - 1);
   };
 
   return (
@@ -22,9 +20,9 @@ const Counter = () => {
         titleStyle={styles.buttonTextStyle}
         title="-"
         onPress={onDecrementCount}
-        disabled={count <= 0}
+        disabled={value <= 1}
       />
-      <Text>{count}</Text>
+      <Text>{value}</Text>
       <Button
         containerStyle={styles.buttonContainer}
         buttonStyle={styles.buttonStyle}

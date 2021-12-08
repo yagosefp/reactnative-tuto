@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import { Image } from 'react-native-elements/dist/image/Image';
@@ -8,13 +8,14 @@ import Counter from '../counter/Counter';
 
 const ProductItem = ({ product, onAddItemToCart }) => {
   const navigation = useNavigation<any>();
+  const [numItems, setNumItems] = useState(1);
 
   const onPressCard = () => {
     navigation.navigate('product-details', { item: product });
   };
 
   const onPressAddButton = () => {
-    onAddItemToCart(product);
+    onAddItemToCart(product, numItems);
   };
 
   return (
@@ -38,7 +39,7 @@ const ProductItem = ({ product, onAddItemToCart }) => {
         </View>
       </TouchableOpacity>
       <View style={styles.counterContainer}>
-        <Counter />
+        <Counter value={numItems} onChangeValue={setNumItems} />
       </View>
       <View>
         <Button onPress={onPressAddButton} title="Añadir al carrito" />
